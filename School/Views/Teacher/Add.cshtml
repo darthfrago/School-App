@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Add Teacher";
+}
+
+<div id="page4" class="page center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 center">
+                <!--<h1><span>Register Parents</span></h1>-->
+                <h3>The Teacher</h3>
+            </div>
+        </div>
+        <hr />
+        <!-- About Us -->
+        <div class="row">
+            <form action="/Teacher/Add" method="POST" enctype="multipart/form-data">
+                <table width="100%">
+                    <tr>
+                        <td>Teacher Name</td>
+                        <td><input type="text" name="name" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Teacher Surname</td>
+                        <td><input type="text" name="surname" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Email Address</td>
+                        <td><input type="text" name="email" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" name="username" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="text" name="password" value="" /></td>
+                        <td><input type="text" name="userType" value="1" hidden /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" value="REGISTER" name="registerParents" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <!-- /About Us -->
+    </div>
+</div>

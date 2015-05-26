@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@ViewBag.Title - School</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- font awesome -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="~/Content/animate/animate.css" />
+    <link rel="stylesheet" href="~/Content/animate/set.css" />
+
+    <!-- gallery -->
+    <link rel="stylesheet" href="~/Content/gallery/blueimp-gallery.min.css">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link href="~/Content/jquery.loadmask.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="topbar animated fadeInLeftBig"></div>
+    @Html.Partial("_Header")
+    @RenderBody()
+
+    <!-- Footer Starts -->
+    <div class="footer text-center spacer">
+        <p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p>
+        Copyright 2014 Cyrus Creative Studio. All rights reserved.
+    </div>
+    <!-- # Footer Ends -->
+    <a href="#home" class="gototop "><i class="fa fa-angle-up  fa-3x"></i></a>
+
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <h3 class="title">Title</h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    </div>
+
+    <!-- jquery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- wow script -->
+    <script src="~/Content/wow/wow.min.js"></script>
+
+
+    <!-- boostrap -->
+    <script src="~/Content/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+
+    <!-- jquery mobile -->
+    <script src="~/Content/mobile/touchSwipe.min.js"></script>
+    <script src="~/Content/respond/respond.js"></script>
+
+    <!-- gallery -->
+    <script src="~/Content/gallery/jquery.blueimp-gallery.min.js"></script>
+
+    <!-- custom script -->
+    <script src="~/Scripts/script.js"></script>
+
+    <script src="~/Scripts/jquery.loadmask.min.js"></script>
+</body>
+</html>

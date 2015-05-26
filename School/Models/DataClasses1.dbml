@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="School" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SBS-2\SQLEXPRESS;Initial Catalog=School;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SchoolConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Learner" Member="Learners" ThisKey="user_id" OtherKey="user_id" Type="Learner" />
+      <Association Name="User_Register" Member="Registers" ThisKey="user_id" OtherKey="user_id" Type="Register" />
+      <Association Name="User_Mark" Member="Marks" ThisKey="user_id" OtherKey="user_id" Type="Mark" />
+      <Association Name="User_Concern" Member="Concerns" ThisKey="user_id" OtherKey="user_id" Type="Concern" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Classes" Member="Classes">
+    <Type Name="Class">
+      <Column Name="class_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="className" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Class_Learner" Member="Learners" ThisKey="class_id" OtherKey="class_id" Type="Learner" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Learners" Member="Learners">
+    <Type Name="Learner">
+      <Column Name="learner_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="class_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Learner_Register" Member="Register" ThisKey="learner_id" OtherKey="register_id" Type="Register" Cardinality="One" />
+      <Association Name="Learner_Mark" Member="Marks" ThisKey="learner_id" OtherKey="learner_id" Type="Mark" />
+      <Association Name="Learner_Concern" Member="Concerns" ThisKey="learner_id" OtherKey="learner_id" Type="Concern" />
+      <Association Name="Class_Learner" Member="Class" ThisKey="class_id" OtherKey="class_id" Type="Class" IsForeignKey="true" />
+      <Association Name="User_Learner" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subjects" Member="Subjects">
+    <Type Name="Subject">
+      <Column Name="subject_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Subject_Register" Member="Registers" ThisKey="subject_id" OtherKey="subject_id" Type="Register" />
+      <Association Name="Subject_Mark" Member="Marks" ThisKey="subject_id" OtherKey="subject_id" Type="Mark" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Registers" Member="Registers">
+    <Type Name="Register">
+      <Column Name="register_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="learner_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subject_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isPresent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="timeStamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Learner_Register" Member="Learner" ThisKey="register_id" OtherKey="learner_id" Type="Learner" IsForeignKey="true" />
+      <Association Name="Subject_Register" Member="Subject" ThisKey="subject_id" OtherKey="subject_id" Type="Subject" IsForeignKey="true" />
+      <Association Name="User_Register" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Marks" Member="Marks">
+    <Type Name="Mark">
+      <Column Name="mark_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="learner_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subject_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="marks" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Learner_Mark" Member="Learner" ThisKey="learner_id" OtherKey="learner_id" Type="Learner" IsForeignKey="true" />
+      <Association Name="Subject_Mark" Member="Subject" ThisKey="subject_id" OtherKey="subject_id" Type="Subject" IsForeignKey="true" />
+      <Association Name="User_Mark" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Concerns" Member="Concerns">
+    <Type Name="Concern">
+      <Column Name="concern_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="learner_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="timestamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Learner_Concern" Member="Learner" ThisKey="learner_id" OtherKey="learner_id" Type="Learner" IsForeignKey="true" />
+      <Association Name="User_Concern" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

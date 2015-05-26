@@ -1,0 +1,64 @@
+﻿@model List<School.Models.LearnerReportViewModel>
+@{
+    ViewBag.Title = "Report";
+}
+
+<div class="spacer">
+    <div class="container center">
+        <h2 style="visibility: visible; animation-name: fadeInUp;" class="wowload fadeInUp animated">Enter marks</h2>
+        <div style="visibility: visible; animation-name: fadeInLeftBig;" class="row wowload fadeInLeftBig animated">
+            <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+                @foreach (var r in Model)
+                {
+                    <h4><strong>@r.Learner</strong></h4>
+                    if (r.Marks.Count > 0)
+                    {
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Description</th>
+                                    <th>Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in r.Marks)
+                                {
+                                    <tr>
+                                        <td>@m.Subject</td>
+                                        <td>@m.Description</td>
+                                        <td>@m.Marks %</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                    if (r.Concerns.Count > 0)
+                    {
+                        <h4><strong>Concerns</strong></h4>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Concern</th>
+                                    <th>Teacher</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in r.Concerns)
+                                {
+                                    <tr>
+                                        <td>@c.Message</td>
+                                        <td>@c.Teacher</td>
+                                        <td>@c.Date.ToString("dd-MM-yyyy")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
