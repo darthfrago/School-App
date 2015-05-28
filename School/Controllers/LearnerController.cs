@@ -53,7 +53,10 @@ namespace School.Controllers
             {
                 db.Learners.InsertOnSubmit(newLearner);
                 db.SubmitChanges();
+                ViewBag.success = "Learner registered successfully.";
             }
+            else
+                ViewBag.error = "Something went wrong, please try again";
 
             return View();
         }

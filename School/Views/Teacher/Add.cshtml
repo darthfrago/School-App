@@ -13,7 +13,7 @@
         <hr />
         <!-- About Us -->
         <div class="row">
-            <form action="/Teacher/Add" method="POST" enctype="multipart/form-data">
+            <form action="/Teacher/Add" method="POST" enctype="multipart/form-data" id="TeacherForm">
                 <table width="100%">
                     <tr>
                         <td>Teacher Name</td>
@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td>Username</td>
-                        <td><input type="text" name="username" value="" /></td>
+                        <td><input type="text" name="username" value="" id="username" /></td>
                     </tr>
                     <tr>
                         <td>Password</td>
@@ -49,3 +49,53 @@
         <!-- /About Us -->
     </div>
 </div>
+<!-- ERROR NOTIFICATION -->
+<div class="alert alert-danger animated" id="errorDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
+    <span id="errorSpan">Oops! can't save, please try again</span>
+</div>
+<!-- SUCCESS NOTIFICATION -->
+<div class="alert alert-success" id="successDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
+    <span id="successSpan">Message sent successfully :)</span>
+</div>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/UserValidation.js"></script>
+
+<script>
+    $(document).ready(function () {
+        @if(ViewBag.success != null)
+        {
+            <text>
+            $("#successSpan").html('@ViewBag.success');
+            $("#successDiv").show().delay(3000).fadeOut();
+            </text>
+        }
+        else if(ViewBag.error != null)
+        {
+            <text>
+            $("#errorSpan").html("The username <b>" + username + "</b> already exists :(");
+            $("#errorDiv").show().delay(5000).fadeOut();
+            </text>
+        }
+    })
+
+    $('#username').focusout(function () {
+        var username = $(this).val();
+        if (username !== '' && username != null) {
+            $("#username").attr('disabled', 'disabled');
+
+            $.getJSON("/Parent/Exists?username=" + username, function (data) {
+                $("#username").removeAttr('disabled');
+
+                if (data)
+                {
+                    $("#username").focus()
+                    $("#username").val("")
+                    $("#errorSpan").html("The username <b>" + username + "</b> already exists :(");
+                    $("#errorDiv").show().delay(5000).fadeOut();
+                }
+            });
+        }
+    });
+</script>

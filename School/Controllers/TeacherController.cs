@@ -47,7 +47,20 @@ namespace School.Controllers
             {
                 db.Users.InsertOnSubmit(newUser);
                 db.SubmitChanges();
+                ViewBag.success = "Teacher registered successfully.";
+
+                if (newUser.email != null)
+                {
+                    var message = "Hello there, <br/>Welcome to the School App. You have been registered successfully. Your account details are as follows:<br/><br/>"
+                        + "<b>Username:</b> " + newUser.username + "<br/><b>Password: </b> " + newUser.password + "<br/><br/>Thank you for registering.<br/>School App Team";
+                    var subject = "Welcome the School App";
+                    string body = "<p>" + message + "</p>";
+
+                    var sent = SendEmail(newUser.email, subject, body);
+                }
             }
+            else
+                ViewBag.error = "Something went wrong, please try again";
 
             return View();
         }

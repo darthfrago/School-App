@@ -19,10 +19,18 @@ namespace School.Models
         public string Message { get; set; }
     }
 
+    public class AbsenceReportViewModel
+    {
+        public DateTime Date { get; set; }
+        public string Subjet { get; set; }
+        public string Teacher { get; set; }
+    }
+
     public class LearnerReportViewModel
     {
         public string Learner { get; set; }
         public List<MarksReportViewModel> Marks { get; set; }
         public List<ConcernsReportViewModel> Concerns { get; set; }
+        public List<AbsenceReportViewModel> Absents { get; set; }
     }
 }

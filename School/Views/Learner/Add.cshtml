@@ -20,6 +20,29 @@
     </div>
 </div>
 
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/UserValidation.js"></script>
+
+<script>
+    $(document).ready(function () {
+        @if(ViewBag.success != null)
+        {
+            <text>
+            $("#successSpan").html('@ViewBag.success');
+            $("#successDiv").show().delay(3000).fadeOut();
+            </text>
+        }
+        else if(ViewBag.error != null)
+        {
+            <text>
+            $("#errorSpan").html("The username <b>" + username + "</b> already exists :(");
+            $("#errorDiv").show().delay(5000).fadeOut();
+            </text>
+        }
+    })
+</script>
+
 <!--
 <div id="page4" class="page center">
     <div class="container">
