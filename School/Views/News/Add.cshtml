@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Add News";
+}
+
+<div class="spacer">
+    <div class="container contactform center">
+        <h2 style="visibility: visible; animation-name: fadeInUp;" class="wowload fadeInUp animated">Add News</h2>
+        <div style="visibility: visible; animation-name: fadeInLeftBig;" class="row wowload fadeInLeftBig animated">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                <form action="/News/Add/" method="POST" enctype="multipart/form-data" id="NewsForm">
+                    <input type="text" name="title" id="title" placeholder="Title">
+                    <textarea name="news_text" id="news_text" rows="3" placeholder="What's the news?'"></textarea>
+                    <input type="submit" class="btn btn-primary" value="Save" name="addNews" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ERROR NOTIFICATION -->
+<div class="alert alert-danger animated" id="errorDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
+    <span id="errorSpan">Oops! can't save, please try again</span>
+</div>
+<!-- SUCCESS NOTIFICATION -->
+<div class="alert alert-success" id="successDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
+    <span id="successSpan">Message sent successfully :)</span>
+</div>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/UserValidation.js"></script>
+
+<script>
+    $(document).ready(function () {
+        @if(ViewBag.success != null)
+        {
+            <text>
+            $("#successSpan").html('@ViewBag.success');
+            $("#successDiv").show().delay(3000).fadeOut();
+            </text>
+        }
+        else if(ViewBag.error != null)
+        {
+            <text>
+            $("#errorSpan").html("The username <b>" + username + "</b> already exists :(");
+            $("#errorDiv").show().delay(5000).fadeOut();
+            </text>
+        }
+    })
+</script>

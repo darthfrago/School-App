@@ -19,6 +19,16 @@ namespace School.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+            string username = User.Identity.Name;
+            var userType = Methods.GetUserType(username);
+            ViewBag.UserType = userType;
+            ViewBag.CurrentPage = "Contact";
+
+            return View();
+        }
+
         public ActionResult AddParent()
         {
             string username = User.Identity.Name;

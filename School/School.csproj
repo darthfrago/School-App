@@ -186,6 +186,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LearnerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -402,6 +403,9 @@
     <Content Include="Views\Teacher\EnterMarks.cshtml" />
     <Content Include="Views\Teacher\Concerns.cshtml" />
     <Content Include="Views\Parent\Report.cshtml" />
+    <Content Include="Views\News\Add.cshtml" />
+    <Content Include="Views\News\See.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

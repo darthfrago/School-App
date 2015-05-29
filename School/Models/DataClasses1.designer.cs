@@ -51,6 +51,9 @@ namespace School.Models
     partial void InsertConcern(Concern instance);
     partial void UpdateConcern(Concern instance);
     partial void DeleteConcern(Concern instance);
+    partial void InsertNewsEntry(NewsEntry instance);
+    partial void UpdateNewsEntry(NewsEntry instance);
+    partial void DeleteNewsEntry(NewsEntry instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -138,6 +141,14 @@ namespace School.Models
 				return this.GetTable<Concern>();
 			}
 		}
+		
+		public System.Data.Linq.Table<NewsEntry> NewsEntries
+		{
+			get
+			{
+				return this.GetTable<NewsEntry>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
@@ -168,6 +179,8 @@ namespace School.Models
 		
 		private EntitySet<Concern> _Concerns;
 		
+		private EntitySet<NewsEntry> _NewsEntries;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -194,6 +207,7 @@ namespace School.Models
 			this._Registers = new EntitySet<Register>(new Action<Register>(this.attach_Registers), new Action<Register>(this.detach_Registers));
 			this._Marks = new EntitySet<Mark>(new Action<Mark>(this.attach_Marks), new Action<Mark>(this.detach_Marks));
 			this._Concerns = new EntitySet<Concern>(new Action<Concern>(this.attach_Concerns), new Action<Concern>(this.detach_Concerns));
+			this._NewsEntries = new EntitySet<NewsEntry>(new Action<NewsEntry>(this.attach_NewsEntries), new Action<NewsEntry>(this.detach_NewsEntries));
 			OnCreated();
 		}
 		
@@ -389,6 +403,19 @@ namespace School.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_NewsEntry", Storage="_NewsEntries", ThisKey="user_id", OtherKey="user_id")]
+		public EntitySet<NewsEntry> NewsEntries
+		{
+			get
+			{
+				return this._NewsEntries;
+			}
+			set
+			{
+				this._NewsEntries.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -452,6 +479,18 @@ namespace School.Models
 		}
 		
 		private void detach_Concerns(Concern entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_NewsEntries(NewsEntry entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_NewsEntries(NewsEntry entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
@@ -1884,6 +1923,205 @@ namespace School.Models
 					if ((value != null))
 					{
 						value.Concerns.Add(this);
+						this._user_id = value.user_id;
+					}
+					else
+					{
+						this._user_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NewsEntries")]
+	public partial class NewsEntry : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _news_id;
+		
+		private string _news_text;
+		
+		private System.Nullable<int> _user_id;
+		
+		private System.Nullable<System.DateTime> _timestamp;
+		
+		private string _title;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onnews_idChanging(int value);
+    partial void Onnews_idChanged();
+    partial void Onnews_textChanging(string value);
+    partial void Onnews_textChanged();
+    partial void Onuser_idChanging(System.Nullable<int> value);
+    partial void Onuser_idChanged();
+    partial void OntimestampChanging(System.Nullable<System.DateTime> value);
+    partial void OntimestampChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
+    #endregion
+		
+		public NewsEntry()
+		{
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_news_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int news_id
+		{
+			get
+			{
+				return this._news_id;
+			}
+			set
+			{
+				if ((this._news_id != value))
+				{
+					this.Onnews_idChanging(value);
+					this.SendPropertyChanging();
+					this._news_id = value;
+					this.SendPropertyChanged("news_id");
+					this.Onnews_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_news_text", DbType="VarChar(MAX)")]
+		public string news_text
+		{
+			get
+			{
+				return this._news_text;
+			}
+			set
+			{
+				if ((this._news_text != value))
+				{
+					this.Onnews_textChanging(value);
+					this.SendPropertyChanging();
+					this._news_text = value;
+					this.SendPropertyChanged("news_text");
+					this.Onnews_textChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="Int")]
+		public System.Nullable<int> user_id
+		{
+			get
+			{
+				return this._user_id;
+			}
+			set
+			{
+				if ((this._user_id != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onuser_idChanging(value);
+					this.SendPropertyChanging();
+					this._user_id = value;
+					this.SendPropertyChanged("user_id");
+					this.Onuser_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timestamp", DbType="DateTime")]
+		public System.Nullable<System.DateTime> timestamp
+		{
+			get
+			{
+				return this._timestamp;
+			}
+			set
+			{
+				if ((this._timestamp != value))
+				{
+					this.OntimestampChanging(value);
+					this.SendPropertyChanging();
+					this._timestamp = value;
+					this.SendPropertyChanged("timestamp");
+					this.OntimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", DbType="VarChar(50)")]
+		public string title
+		{
+			get
+			{
+				return this._title;
+			}
+			set
+			{
+				if ((this._title != value))
+				{
+					this.OntitleChanging(value);
+					this.SendPropertyChanging();
+					this._title = value;
+					this.SendPropertyChanged("title");
+					this.OntitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_NewsEntry", Storage="_User", ThisKey="user_id", OtherKey="user_id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.NewsEntries.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.NewsEntries.Add(this);
 						this._user_id = value.user_id;
 					}
 					else

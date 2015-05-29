@@ -102,11 +102,25 @@
 
                         @if (ViewBag.CurrentPage == "News")
                         {
-                            <li class="active"><a href="#">News</a></li>
+                            if (ViewBag.UserType == 0)
+                            {
+                                <li class="active"><a href="~/News/Add/">News</a></li>
+                            }
+                            else
+                            {
+                                <li class="active"><a href="~/News/See/">News</a></li>
+                            }
                         }
                         else
                         {
-                            <li><a href="#">News</a></li>
+                            if (ViewBag.UserType == 0)
+                            {
+                                <li><a href="~/News/Add/">News</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/News/See/">News</a></li>
+                            }
                         }
 
                         @if (ViewBag.CurrentPage == "Contact")
