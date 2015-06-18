@@ -130,9 +130,36 @@
                         else
                         {
                             <li><a href="~/Home/Contact">Contact Us</a></li>
-                        }                                           
+                        }  
+
+                        @if (ViewBag.CurrentPage == "Account")
+                        {
+                            <li role="presentation" class="dropdown active">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    Account <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="~/Account/Profile/">Profile</a></li>
+                                    <li><a href="~/Login/Logout/">Logout</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    Account <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="~/Account/Profile/">Profile</a></li>
+                                    <li><a href="~/Login/Logout/">Logout</a></li>
+                                </ul>
+                            </li>
+                        }  
                         
-                        <li><a href="~/Login/Logout/">Logout</a></li>
+                                                           
+                        
+                           <!--<li><a href="~/Login/Logout/">Logout</a></li>-->
                     </ul>
                 </div>
                 <!-- #Nav Ends -->

@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using School.Filters;
 using School.Models;
+using School.Utilities;
 
 namespace School.Controllers
 {
@@ -17,6 +18,56 @@ namespace School.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        //
+        // GET: /Account/Profile
+        public ActionResult Profile()
+        {
+            string username = User.Identity.Name;
+            var userType = Methods.GetUserType(username);
+            ViewBag.UserType = userType;
+            ViewBag.CurrentPage = "Account";
+
+            var user = db.Users.FirstOrDefault(u => u.username == username);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        // GET: /Account/Profile
+        public ActionResult Profile(User editedUser)
+        {
+            bool newUsername = false;
+
+            if(ModelState.IsValid)
+            {
+                string username = User.Identity.Name;
+                var userType = Methods.GetUserType(username);
+                ViewBag.UserType = userType;
+                ViewBag.CurrentPage = "Account";
+
+                var user = db.Users.FirstOrDefault(u => u.user_id == editedUser.user_id);
+                newUsername = (user.username != editedUser.username) ? true : false;
+                user.name = editedUser.name;
+                user.surname = editedUser.surname;
+                user.username = editedUser.username;
+                user.email = user.email;
+                user.password = (!string.IsNullOrEmpty(editedUser.password)) ? editedUser.password : user.password;
+                db.SubmitChanges();
+
+                  ViewBag.success = "Profile changed successfully.";
+            }
+            else
+                ViewBag.error = "Something went wrong, please try again";
+
+            if (newUsername)
+            {
+                WebSecurity.Logout();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+                return View(editedUser);
+        }
+
         //
         // GET: /Account/Login
 
@@ -327,6 +378,8 @@ namespace School.Controllers
             ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
+
+        DataClasses1DataContext db = new DataClasses1DataContext();
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

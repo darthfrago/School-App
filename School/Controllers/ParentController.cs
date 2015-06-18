@@ -58,7 +58,7 @@ namespace School.Controllers
                     var subject = "Welcome the School App";
                     string body = "<p>" + message + "</p>";
 
-                    var sent = SendEmail(newUser.email, subject, body);
+                    var sent = Methods.SendEmail(newUser.email, subject, body);
                 }
             }
             else
@@ -67,35 +67,7 @@ namespace School.Controllers
             return View();
         }
 
-        public bool SendEmail(string address, string subject, string body)
-        {
-            if ((address != null) && (address.Trim().Length > 0))
-            {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("fl.hanyane@gmail.com", "School App Team");
-                mail.To.Add(address);
-                mail.Subject = subject;
-                mail.Body = body;
-                mail.IsBodyHtml = true;
-
-                try
-                {
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-                    SmtpServer.Credentials = new NetworkCredential("fl.hanyane@gmail.com", "9104145571");
-                    SmtpServer.EnableSsl = true;
-                    SmtpServer.Send(mail);
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
+      
 
         //
         // GET: /Parent/Report
