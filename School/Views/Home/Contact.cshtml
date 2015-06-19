@@ -7,17 +7,48 @@
     <div class="container contactform center">
         <h2 class="text-center  wowload fadeInUp">Get in touch with us</h2>
         <div class="row wowload fadeInLeftBig">
-            <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Company">
-                <textarea rows="5" placeholder="Message"></textarea>
-                <button class="btn btn-primary">Send</button>
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12"> 
+                <form action="/Home/Contact/" method="POST" enctype="multipart/form-data" id="ContactUsForm">
+                    <input type="text" placeholder="Name" name="Name">
+                    <input type="text" placeholder="Phone Number" name="PhoneNumber">
+                    <textarea rows="5" placeholder="Message" name="Message"></textarea>
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </form>
             </div>
         </div>
-
-
-
     </div>
 </div>
 <!--Contact Ends-->
+
+<!-- ERROR NOTIFICATION -->
+<div class="alert alert-danger animated" id="errorDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
+    <span id="errorSpan">Oops! can't save, please try again</span>
+</div>
+<!-- SUCCESS NOTIFICATION -->
+<div class="alert alert-success" id="successDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
+    <span id="successSpan">Message sent successfully :)</span>
+</div>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/UserValidation.js"></script>
+
+<script>
+    $(document).ready(function () {
+        @if(ViewBag.success != null)
+        {
+            <text>
+            $("#successSpan").html('@ViewBag.success');
+            $("#successDiv").show().delay(3000).fadeOut();
+            </text>
+        }
+        else if(ViewBag.error != null)
+        {
+            <text>
+        $("#errorSpan").html('@ViewBag.error');
+            $("#errorDiv").show().delay(5000).fadeOut();
+            </text>
+        }
+    })
+</script>
 

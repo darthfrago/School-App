@@ -2,16 +2,33 @@
     ViewBag.Title = "Add Teacher";
 }
 
+<div id="contact" class="spacer">
+    <div class="container contactform center">
+        <h2 class="text-center  wowload fadeInUp">Add Teacher</h2>
+        <div class="row wowload fadeInLeftBig">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                <form action="/Teacher/Add" method="POST" enctype="multipart/form-data" id="TeacherForm">
+                    <input type="text" name="name" value="" placeholder="Teacher Name" />
+                    <input type="text" name="surname" value="" placeholder="Teacher Surname" />
+                    <input type="text" name="email" value="" placeholder="Email Address" />
+                    <input type="text" name="username" value="" id="username" placeholder="Username" />
+                    <input type="password" name="password" value="" placeholder="Password" />
+                    <input type="text" name="userType" value="1" hidden />
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <div id="page4" class="page center">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 center">
-                <!--<h1><span>Register Parents</span></h1>-->
                 <h3>The Teacher</h3>
             </div>
         </div>
         <hr />
-        <!-- About Us -->
         <div class="row">
             <form action="/Teacher/Add" method="POST" enctype="multipart/form-data" id="TeacherForm">
                 <table width="100%">
@@ -33,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="text" name="password" value="" /></td>
+                        <td><input type="password" name="password" value="" /></td>
                         <td><input type="text" name="userType" value="1" hidden /></td>
                     </tr>
                     <tr>
@@ -46,9 +63,9 @@
                 </table>
             </form>
         </div>
-        <!-- /About Us -->
     </div>
-</div>
+</div>-->
+
 <!-- ERROR NOTIFICATION -->
 <div class="alert alert-danger animated" id="errorDiv" style="position:fixed; z-index:2000; bottom: 5px; right: 10px; display:none">
     <span id="errorSpan">Oops! can't save, please try again</span>

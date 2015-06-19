@@ -7,7 +7,7 @@
         <h2 style="visibility: visible; animation-name: fadeInUp;" class="text-center  wowload fadeInUp animated">The Learner</h2>
         <div style="visibility: visible; animation-name: fadeInLeftBig;" class="row wowload fadeInLeftBig animated">
             <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-                <form action="/Learner/Add/" method="POST" enctype="multipart/form-data">
+                <form action="/Learner/Add/" method="POST" enctype="multipart/form-data" id="LearnerForm">
                     <input type="text" name="name" placeholder="Name" value="" />
                     <input type="text" name="surname" placeholder="Surname" value="" />
                     <input type="text" name="age" placeholder="Age" value="" />
@@ -42,63 +42,3 @@
         }
     })
 </script>
-
-<!--
-<div id="page4" class="page center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 center">
-                <h3>The Learner</h3>
-            </div>
-        </div>
-        <hr />
-
-        <div class="row">
-            <form action="/Learner/Add/" method="POST" enctype="multipart/form-data">
-                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-                    <input type="text" name="name" value="" />
-                    <input type="text" name="surname" value="" />
-                    <input type="text" name="age" value="" />
-                    Html.DropDownList("class_id", new SelectList((IEnumerable<SelectListItem>)ViewBag.Classes, "Value", "Text"), new { class = "form-control" })
-                    Html.DropDownList("user_id", new SelectList((IEnumerable<SelectListItem>)ViewBag.Parents, "Value", "Text"), new { class = "form-control" })
-                    <button class="btn btn-primary"><i class="fa fa-paper-plane"></i> Send</button>
-                </div>
-
-                <table width="100%">
-                    <tr>
-                        <td>Name</td>
-                        <td><input type="text" name="name" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Surname</td>
-                        <td><input type="text" name="surname" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Age</td>
-                        <td><input type="text" name="age" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Grade</td>
-                        <td>
-                            Html.DropDownList("class_id", new SelectList((IEnumerable<SelectListItem>)ViewBag.Classes, "Value", "Text"), new { class = "form-control" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Parent</td>
-                        <td>
-                            Html.DropDownList("user_id", new SelectList((IEnumerable<SelectListItem>)ViewBag.Parents, "Value", "Text"), new { class = "form-control" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><input type="submit" value="REGISTER" name="registerParents" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-
-    </div>
-</div>-->
